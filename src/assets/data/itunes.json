@@ -1,0 +1,69 @@
+{	
+    "albums": 
+    [ 
+        {			
+            "album_img_url": "https://img.discogs.com/-tStOMMJZ1Sz_kN40mTVSfXiH0Q=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-5480381-1590849427-4840.jpeg.jpg", 
+            "album_name": "Un sol", 
+            "album_price": "9,99",
+            "artist_name": "Luis Miguel"
+        }, { 
+            "album_img_url": "https://upload.wikimedia.org/wikipedia/en/4/40/Luis_Miguel_CDs....jpg", 
+            "album_name": "Palabra de honor", 
+            "album_price": "5,99",
+            "artist_name": "Luis Miguel"
+        }, {			
+            "album_img_url": "https://lh3.googleusercontent.com/proxy/1s_ho4sLtN8MAG0LbrFSzH8TTPg4s_FxtcnkjfYrCYP6wuNWHIDgu--RrEX3qUU44NxUyF7UlPCuX8yHOA3T5UoGpj5e7PY", 
+            "album_name": "Navidades", 
+            "album_price": "2,99",
+            "artist_name": "Luis Miguel"
+        }, { 
+            "album_img_url": "https://upload.wikimedia.org/wikipedia/en/thumb/7/74/LMComplices.png/220px-LMComplices.png", 
+            "album_name": "Cómplices", 
+            "album_price": "6,99",
+            "artist_name": "Luis Miguel" 
+        }, { 
+            "album_img_url": "https://upload.wikimedia.org/wikipedia/en/7/78/On_and_On_%28Jack_Johnson_album_-_cover_art%29.jpg", 
+            "album_name": "On and On", 
+            "album_price": "5,99",
+            "artist_name": "Jack Johnson" 
+        }, {
+            "album_img_url": "https://images-na.ssl-images-amazon.com/images/I/81jityQUXyL._SL1400_.jpg", 
+            "album_name": "In Between Dreams", 
+            "album_price": "3,99",
+            "artist_name": "Jack Johnson"
+        }, {
+            "album_img_url": "https://studiosol-a.akamaihd.net/uploadfile/letras/albuns/d/6/b/5/8292.jpg", 
+            "album_name": "To the Sea", 
+            "album_price": "4,99", 
+            "artist_name": "Jack Johnson"
+        }, {
+            "album_img_url": "https://img.discogs.com/klLG5j9QLorFg71s772nvLY0Dpg=/fit-in/598x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-459606-1450389425-8852.jpeg.jpg", 
+            "album_name": "BAD", 
+            "album_price": "7,99",
+            "artist_name": "Michael Jackson" 
+        }, {
+            "album_name": "Dangerous", 
+            "album_price": "7,99",
+            "artist_name": "Michael Jackson" 
+        }, {
+            "album_img_url": "https://3.bp.blogspot.com/-9ft0MtK2a3c/VxjGeIVXo7I/AAAAAAAAX40/Nsn45fDX4jgp6nFKDUXam9lmMYyJvGC6ACLcB/s1600/Queen_1973_1.jpg", 
+            "album_name": "Queen", 
+            "album_price": "9,99", 
+            "artist_name": "Queen"
+        }, {
+            "album_img_url": "https://www.humonegro.com/wp-content/QUEEN-A-NIGHT-AT-THE-OPERA.png", 
+            "album_name": "A Night at the Opera", 
+            "album_price": "12,99", 
+            "artist_name": "Queen"
+        }, {
+            "album_img_url": "https://images-na.ssl-images-amazon.com/images/I/91GRY6FzEcL._SX355_.jpg", 
+            "album_name": "News of the World", 
+            "album_price": "6,99", 
+            "artist_name": "Queen"
+        }, { 
+            "album_name": "The Miracle", 
+            "album_price": "5,99", 
+            "artist_name": "Queen"
+        }
+    ] 
+} 
