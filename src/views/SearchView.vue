@@ -96,7 +96,7 @@ export default {
         ? this.albums
         : this.albums.filter(
             item =>
-              item.artist_name.includes(this.request)
+              item.artist_name.toLowerCase().includes(this.request.toLowerCase())
           );
     },
     sortedArray: function() {
