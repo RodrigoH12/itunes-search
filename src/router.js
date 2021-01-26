@@ -1,13 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import home from "@/App.vue";
+import home from "@/views/Home.vue";
 import searchView from "@/views/SearchView.vue";
 
 Vue.use(VueRouter)
 
 const routes = [
     {
-      path: "/home",
+      path: "/",
       name: "home",
       component: home
     },

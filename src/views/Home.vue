@@ -1,60 +1,35 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
+  <v-container>
+    <v-row class="text-center">
+      <v-col cols="12">
         <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
+          src="https://upload.wikimedia.org/wikipedia/commons/d/df/ITunes_logo.svg"
+          class="my-3"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
+          height="200"
         />
+      </v-col>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+      <v-col class="mb-4">
+        <h1 class="display-2 font-weight-bold mb-3">
+          Welcome to Itunes Store Search
+        </h1>
 
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <HelloWorld/>
-    </v-main>
-  </v-app>
+        <p class="subheading font-weight-regular">
+          This is a project created by Rodrigo Heredia
+          <br>To search for an album in Itunes press the search button located on the top left side navigation bar
+        </p>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+  export default {
+    name: 'Home',
 
-export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
-  },
-
-  data: () => ({
-    //
-  }),
-};
+    data: () => ({
+      
+    }),
+  }
 </script>

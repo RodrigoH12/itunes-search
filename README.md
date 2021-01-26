@@ -4,13 +4,13 @@ This is a VueJS project that can search for songs from the itunes store.
 
 # Tasks
 
-Task 0: Create new Search View
-Task 1: Create a Sidebar menu
-Task 2: Make connection with JSON file/Itunes API
-Task 3: Implement search function
-Task 4: Improve interface
-Task 5: Create unit tests
-Task 6: Clean code
+Task 0: Create new Search View. <br />
+Task 1: Create a Sidebar menu. <br />
+Task 2: Make connection with JSON file/Itunes API. <br />
+Task 3: Implement search function. <br />
+Task 4: Improve interface. <br />
+Task 5: Create unit tests. <br />
+Task 6: Clean code. <br />
 
 ## Project setup
 ```
