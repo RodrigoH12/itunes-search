@@ -1,28 +1,22 @@
 <template>
   <div>
+      <br>
         <v-container>
             <v-layout row>
-                <v-flex xs11>
-                    <v-text-field
-                        v-model="request"
-                        filled
-                        label="Enter Artist Name"
-                        clearable
-                    >
-                    </v-text-field>
-                </v-flex>
-                <v-flex>
-                    <v-btn outlined type="submit" height="55" width="100">
-                        <v-icon>mdi-magnify</v-icon>
-                    </v-btn>
-                </v-flex>
+                <v-text-field
+                    v-model="request"
+                    filled
+                    label="Enter Artist Name"
+                    clearable
+                >
+                </v-text-field>
             </v-layout>
         </v-container>
-
   </div>
 </template>
 
 <script>
+import itunes from '@/assets/data/itunes.json'
 
 export default {
   name: 'App',
@@ -33,8 +27,13 @@ export default {
 
   data() {
     return {
-        request: 'Jack+Johnson'
+        request: '',
+        albums: itunes.albums
       }
   },
 };
 </script>
+ 
+<style>
+
+</style>
