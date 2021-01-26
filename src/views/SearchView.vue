@@ -7,7 +7,6 @@
                     v-model="request"
                     filled
                     label="Enter Artist Name"
-                    clearable
                 >
                 </v-text-field>
                 <v-menu offset-y>
@@ -40,26 +39,28 @@
         <v-container class="my-5" grid-list-md>
             <v-layout row wrap>
                 <v-flex xs12 sm6 md4 lg3 :key="item.album_name" v-for="item in sortedArray">
-                    <v-card class="text-center mx-auto">
+                    <div class="text-left mx-auto custom-card">
                         <v-img v-if="item.album_img_url != null "
                             contain
-                            height="200"
+                            height="300"
+                            width="300"
                             :src="item.album_img_url"
                         ></v-img>
                         <v-img v-else
                             contain
-                            height="200"
+                            height="300"
+                            width="300"
                             src="https://upload.wikimedia.org/wikipedia/commons/d/df/ITunes_logo.svg"
                         ></v-img>
-                        <v-card-text class="text-left">
-                            <div class="subheading"><b> Album: </b></div>
-                            <div class="grey--text">{{ item.album_name }}</div>
+                        <v-flex class="text-xs-left" xs12>
+                            <div class="subheading font-weight-medium"><b> Album: </b></div>
+                            <div class="grey--text albumData">{{ item.album_name }}</div>
                             <div class="subheading"><b> Artist: </b></div>
-                            <div class="grey--text">{{ item.artist_name }}</div>
+                            <div class="grey--text albumData">{{ item.artist_name }}</div>
                             <div class="subheading"><b> Price: </b></div>
-                            <div class="grey--text">{{ item.album_price }} $</div>
-                        </v-card-text>
-                    </v-card>
+                            <div class="grey--text albumData">{{ item.album_price }} $</div>
+                        </v-flex>
+                    </div>
                 </v-flex>
             </v-layout>
         </v-container>
@@ -82,8 +83,8 @@ export default {
         request: '',
         albums: itunes.albums,
         items: [
-            { title: 'Normal', type: null },
-            { title: 'Alfabéticamente ascendente [A - Z]', type: 'asc' },
+            { title: 'Predeterminado', type: null },
+            { title: 'Alfabéticamente ascendente  [A - Z]', type: 'asc' },
             { title: 'Alfabéticamente descendente [Z - A]', type: 'desc' }
         ],
       }
@@ -91,7 +92,6 @@ export default {
 
   computed: {
       filteredList() {
-          console.log(JSON.parse(JSON.stringify(this.albums)));
       return this.request === ""
         ? this.albums
         : this.albums.filter(
@@ -130,5 +130,14 @@ export default {
 </script>
  
 <style>
+.custom-card {
+  max-height: 470px;
+  max-width: 300px;
+}
+.albumData {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
+}
 </style>
