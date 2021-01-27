@@ -17,7 +17,8 @@
 
         <p class="subheading font-weight-regular">
           This is a project created by Rodrigo Heredia
-          <br>To search for an album in Itunes press the search button located on the top left side navigation bar
+          <br>To search for an album in Itunes press the "Itunes Search" button located on the top left side navigation bar
+          <br>To search for an album using a local JSON file press the "JSON Search" button located on the top left side navigation bar
         </p>
       </v-col>
     </v-row>

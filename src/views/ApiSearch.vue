@@ -16,7 +16,7 @@
                             height="55"
                             v-bind="attrs"
                             v-on="on"
-                            @click="submitSearch"
+                            @click="page=0; submitSearch();"
                         >
                             <v-icon>mdi-magnify</v-icon>
                         </v-btn>
@@ -47,7 +47,16 @@
             </v-layout>
         </v-container>
 
-        <v-container class="my-5" grid-list-md>
+        <v-container v-if="sortedArray.length === 0">
+            <v-row class="text-center">
+                <v-col class="mb-4">
+                    <p class="subheading font-weight-regular">
+                        Type the name of your favorite artist
+                    </p>
+                </v-col>
+            </v-row>
+        </v-container>
+        <v-container v-else class="my-5" grid-list-md>
             <v-layout row wrap>
                 <v-flex xs12 sm6 md4 lg3 :key="index" v-for="(album, index) in sortedArray">
                     <div class="text-left mx-auto custom-card">
@@ -73,6 +82,16 @@
                         </v-flex>
                     </div>
                 </v-flex>
+                <br>
+                <v-flex xs12 class="text-center">
+                    <v-btn :disabled="page <= 0" fab outlined small @click="page--; submitSearch()">
+                        <v-icon>mdi-arrow-left-bold</v-icon>
+                    </v-btn>
+                    <span class="title mx-4">{{ page }}</span>
+                    <v-btn :disabled="albums.length < 20" fab outlined small @click="page++; submitSearch()">
+                        <v-icon>mdi-arrow-right-bold</v-icon>
+                    </v-btn>
+                </v-flex>
             </v-layout>
         </v-container>
   </div>
@@ -92,6 +111,7 @@ export default {
     return {
         attrs: null,
         on: null,
+        page: 0,
         sortFilter: null,
         request: '',
         entity: 'album',
@@ -135,10 +155,14 @@ export default {
         },
         async submitSearch() {
             if (this.request === '') {
+                this.albums = []
                 return
             }
-            const response=await axios.get(`https://itunes.apple.com/search?term=${this.request}&entity=${this.entity}&limit=50`);
-            this.albums=response.data.results;
+
+            return axios.get(`https://itunes.apple.com/search?term=${this.request}&entity=${this.entity}&limit=20&offset=${this.page * 20}`)
+            .then((response) => {
+                this.albums=response.data.results;
+            })
         },
         resizeImg (album) {
             return album.artworkUrl100.replace("100x100", "300x300")
