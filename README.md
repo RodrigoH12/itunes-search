@@ -1,6 +1,7 @@
 # itunes-search
 
-This is a VueJS project that can search for songs from the itunes store.
+This is a VueJS project that can search for music albums from the itunes store or a JSON data file by typing the name of an artist.
+Apart from the search bar, the user will have the ability to use a filter to sort the results by default, alphabetically ascending or descending.
 
 # Tasks
 
@@ -30,6 +31,11 @@ npm run build
 ### Lints and fixes files
 ```
 npm run lint
+```
+
+### Run unit tests
+```
+npm run test:unit
 ```
 
 ### Customize configuration

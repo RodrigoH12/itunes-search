@@ -91,41 +91,42 @@ export default {
   },
 
   computed: {
-      filteredList() {
-      return this.request === ""
-        ? this.albums
-        : this.albums.filter(
-            item =>
-              item.artist_name.toLowerCase().includes(this.request.toLowerCase())
-          );
+    filteredList() {
+        return this.request === ""
+            ? this.albums
+            : this.albums.filter(
+                item =>
+                item.artist_name.toLowerCase().includes(this.request.toLowerCase())
+            );
     },
-    sortedArray: function() {
-        function compareAsc(a, b) {
-            if (a.album_name < b.album_name)
-                return -1;
-            if (a.album_name > b.album_name)
-                return 1;
-            return 0;
-        }
-        function compareDesc(a, b) {
-            if (a.album_name > b.album_name)
-                return -1;
-            if (a.album_name < b.album_name)
-                return 1;
-            return 0;
-        }
-
+    sortedArray() {
         if (this.sortFilter == null) {
             return this.filteredList;
         }
         else if (this.sortFilter == "asc") {
-            return (JSON.parse(JSON.stringify(this.filteredList))).sort(compareAsc);
+            return (JSON.parse(JSON.stringify(this.filteredList))).sort(this.compareAsc);
         }
         else {
-            return (JSON.parse(JSON.stringify(this.filteredList))).sort(compareDesc);
+            return (JSON.parse(JSON.stringify(this.filteredList))).sort(this.compareDesc);
         }
     }
   },
+  methods: {
+        compareAsc(a, b) {
+            if (a.album_name < b.album_name)
+                return -1;
+            if (a.album_name > b.album_name)
+                return 1;
+            return 0;
+        },
+        compareDesc(a, b) {
+            if (a.album_name > b.album_name)
+                return -1;
+            if (a.album_name < b.album_name)
+                return 1;
+            return 0;
+        }
+  }
 };
 </script>
  
@@ -138,6 +139,5 @@ export default {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
 }
 </style>
