@@ -19,9 +19,6 @@ describe('SearchView.vue', () => {
   });
 
   it("The quantity of Queen albums shown is equal to four", () => {
-    const wrapper = shallowMount(SearchView, {
-      
-    });
     let expectedlength = 4;
     wrapper.vm.$data.request = "Queen"
     let albumsShown = wrapper.vm.sortedArray.length;
@@ -31,9 +28,6 @@ describe('SearchView.vue', () => {
   });
 
   it("The albums are being correctly sorted alphabetically", () => {
-    const wrapper = shallowMount(SearchView, {
-      
-    });
     const newAlbums = [ 
       {			
           album_img_url: "https://img.discogs.com/-tStOMMJZ1Sz_kN40mTVSfXiH0Q=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-5480381-1590849427-4840.jpeg.jpg", 
