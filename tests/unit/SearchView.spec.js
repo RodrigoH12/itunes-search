@@ -14,8 +14,6 @@ describe('SearchView.vue', () => {
     let expectedlength = 13;
     let currentAlbums = wrapper.vm.$data.albums;
 
-    //console.log("Current: " + currentAlbums.length);
-    //console.log("Expected: " + expectedlength);
     assert.exists(currentAlbums);
     assert.equal(currentAlbums.length, expectedlength);
   });
@@ -28,8 +26,6 @@ describe('SearchView.vue', () => {
     wrapper.vm.$data.request = "Queen"
     let albumsShown = wrapper.vm.sortedArray.length;
 
-    //console.log("Current: " + albumsShown);
-    //console.log("Expected: " + expectedlength);
     assert.exists(albumsShown);
     assert.equal(albumsShown, expectedlength);
   });
@@ -66,7 +62,6 @@ describe('SearchView.vue', () => {
     wrapper.vm.$data.sortFilter = "asc"
     let albumsShown = wrapper.vm.sortedArray;
 
-    //console.log(albumsShown[0].album_name);
     assert.exists(albumsShown);
     assert.equal(albumsShown[0].album_name, newAlbums[3].album_name);
     assert.equal(albumsShown[1].album_name, newAlbums[2].album_name);
