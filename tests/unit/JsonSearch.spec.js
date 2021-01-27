@@ -1,13 +1,13 @@
 import { assert } from 'chai'
 import { shallowMount } from '@vue/test-utils'
-import SearchView from '@/views/SearchView.vue'
+import JsonSearch from '@/views/JsonSearch.vue'
 
-describe('SearchView.vue', () => {
+describe('JsonSearch.vue', () => {
 
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallowMount(SearchView);
+    wrapper = shallowMount(JsonSearch);
   });
 
   it("The quantity of albums shown is correct according to the JSON file", () => {

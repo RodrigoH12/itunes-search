@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import home from "@/views/Home.vue";
-import searchView from "@/views/SearchView.vue";
+import JsonSearch from "@/views/JsonSearch.vue";
 import apiSearch from "@/views/ApiSearch.vue";
 
 Vue.use(VueRouter)
@@ -13,9 +13,9 @@ const routes = [
       component: home
     },
     {
-      path: "/search",
-      name: "search",
-      component: searchView
+      path: "/jsonSearch",
+      name: "jsonSearch",
+      component: JsonSearch
     },
     {
       path: "/apiSearch",
