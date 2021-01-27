@@ -46,7 +46,8 @@ export default {
       group: null,
       views: [
           { title: 'Home', path: '/' },
-          { title: 'Search', path: '/search' }
+          { title: 'JSON Search', path: '/search' },
+          { title: 'Itunes Search', path: '/apiSearch' }
         ],
     }
   },
