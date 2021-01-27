@@ -111,6 +111,7 @@ export default {
         }
     }
   },
+  
   methods: {
         compareAsc(a, b) {
             if (a.album_name < b.album_name)
