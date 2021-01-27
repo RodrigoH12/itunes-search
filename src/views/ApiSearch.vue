@@ -9,6 +9,17 @@
                     label="Enter Artist Name"
                 >
                 </v-text-field>
+                <v-btn
+                            color="deep-purple darken-3"
+                            outlined
+                            dark
+                            height="55"
+                            v-bind="attrs"
+                            v-on="on"
+                            @click="submitSearch"
+                        >
+                            <v-icon>mdi-magnify</v-icon>
+                        </v-btn>
                 <v-menu offset-y>
                     <template v-slot:activator="{ on, attrs }">
                         <v-btn
@@ -38,13 +49,13 @@
 
         <v-container class="my-5" grid-list-md>
             <v-layout row wrap>
-                <v-flex xs12 sm6 md4 lg3 :key="item.album_name" v-for="item in sortedArray">
+                <v-flex xs12 sm6 md4 lg3 :key="index" v-for="(album, index) in sortedArray">
                     <div class="text-left mx-auto custom-card">
-                        <v-img v-if="item.album_img_url != null "
+                        <v-img v-if="album.artworkUrl100 != null"
                             contain
                             height="300"
                             width="300"
-                            :src="item.album_img_url"
+                            :src="resizeImg(album)"
                         ></v-img>
                         <v-img v-else
                             contain
@@ -54,11 +65,11 @@
                         ></v-img>
                         <v-flex class="text-xs-left" xs12>
                             <div class="subheading font-weight-medium"><b> Album: </b></div>
-                            <div class="grey--text albumData">{{ item.album_name }}</div>
+                            <div class="grey--text albumData">{{ album.collectionName }}</div>
                             <div class="subheading"><b> Artist: </b></div>
-                            <div class="grey--text albumData">{{ item.artist_name }}</div>
+                            <div class="grey--text albumData">{{ album.artistName }}</div>
                             <div class="subheading"><b> Price: </b></div>
-                            <div class="grey--text albumData">{{ item.album_price }} $</div>
+                            <div class="grey--text albumData">{{album.collectionPrice}} {{ album.Price }} $</div>
                         </v-flex>
                     </div>
                 </v-flex>
@@ -68,10 +79,10 @@
 </template>
 
 <script>
-import itunes from '@/assets/data/itunes.json'
+import axios from 'axios'
 
 export default {
-  name: 'App',
+  name: 'ApiSearch',
 
   components: {
     
@@ -79,9 +90,12 @@ export default {
 
   data() {
     return {
+        attrs: null,
+        on: null,
         sortFilter: null,
         request: '',
-        albums: itunes.albums,
+        entity: 'album',
+        albums: [],
         items: [
             { title: 'Predeterminado', type: null },
             { title: 'Alfabéticamente ascendente  [A - Z]', type: 'asc' },
@@ -91,42 +105,44 @@ export default {
   },
 
   computed: {
-    filteredList() {
-        return this.request === ""
-            ? this.albums
-            : this.albums.filter(
-                item =>
-                item.artist_name.toLowerCase().includes(this.request.toLowerCase())
-            );
-    },
     sortedArray() {
         if (this.sortFilter == null) {
-            return this.filteredList;
+            return this.albums;
         }
         else if (this.sortFilter == "asc") {
-            return (JSON.parse(JSON.stringify(this.filteredList))).sort(this.compareAsc);
+            return (JSON.parse(JSON.stringify(this.albums))).sort(this.compareAsc);
         }
         else {
-            return (JSON.parse(JSON.stringify(this.filteredList))).sort(this.compareDesc);
+            return (JSON.parse(JSON.stringify(this.albums))).sort(this.compareDesc);
         }
     }
   },
-  
+
   methods: {
         compareAsc(a, b) {
-            if (a.album_name < b.album_name)
+            if (a.collectionName < b.collectionName)
                 return -1;
-            if (a.album_name > b.album_name)
+            if (a.collectionName > b.collectionName)
                 return 1;
             return 0;
         },
         compareDesc(a, b) {
-            if (a.album_name > b.album_name)
+            if (a.collectionName > b.collectionName)
                 return -1;
-            if (a.album_name < b.album_name)
+            if (a.collectionName < b.collectionName)
                 return 1;
             return 0;
-        }
+        },
+        async submitSearch() {
+            if (this.request === '') {
+                return
+            }
+            const response=await axios.get(`https://itunes.apple.com/search?term=${this.request}&entity=${this.entity}&limit=50`);
+            this.albums=response.data.results;
+        },
+        resizeImg (album) {
+            return album.artworkUrl100.replace("100x100", "300x300")
+      },
   }
 };
 </script>
