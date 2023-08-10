@@ -36,15 +36,18 @@
                     v-for="(item, index) in items"
                     :key="index"
                     link
-                    @click="sortFilter = item.type; $emit('filter', sortFilter);"
+                    @click="
+                        sortFilter = item.type;
+                        $emit('filter', sortFilter);
+                    "
                 >
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item>
             </v-list>
         </v-menu>
     </v-layout>
 </template>
-  
+
 <script>
 export default {
     name: 'SearchBar',
@@ -58,15 +61,15 @@ export default {
                 { title: 'Predeterminado', type: 'none' },
                 { title: 'Alfabéticamente ascendente  [A - Z]', type: 'asc' },
                 { title: 'Alfabéticamente descendente [Z - A]', type: 'desc' }
-            ],
-        }
+            ]
+        };
     },
     methods: {
         search() {
             this.$emit('filter', this.sortFilter);
             this.$emit('author', this.request);
             this.$emit('search');
-        },
+        }
     }
-}
+};
 </script>
