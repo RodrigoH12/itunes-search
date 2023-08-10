@@ -57,19 +57,17 @@
                     </v-col>
                 </v-row>
             </v-container>
+            
             <v-container v-else class="my-5" grid-list-lg>
                 <v-layout row wrap>
                     <v-flex xs12 sm6 md4 lg3 :key="index" v-for="(album, index) in sortedArray">
                         <Card :album="(album)"></Card>
                     </v-flex>
                     <v-flex xs12 class="text-center">
-                        <v-btn :disabled="page <= 0" fab outlined small @click="page--; submitSearch()">
-                            <v-icon>mdi-arrow-left-bold</v-icon>
-                        </v-btn>
-                        <span class="title mx-4">{{ page }}</span>
-                        <v-btn :disabled="albums.length < 20" fab outlined small @click="page++; submitSearch()">
-                            <v-icon>mdi-arrow-right-bold</v-icon>
-                        </v-btn>
+                        <Pagination :albumsQty="albums.length" 
+                            @changePage="page = $event" 
+                            @search="submitSearch()"
+                        />
                     </v-flex>
                 </v-layout>
             </v-container>
@@ -79,12 +77,14 @@
 <script>
 import axios from 'axios'
 import Card from "@/components/Card";
+import Pagination from "@/components/Pagination";
 
 export default {
     name: 'ApiSearch',
 
     components: {
-        Card
+        Card,
+        Pagination
     },
 
     data() {
@@ -107,7 +107,6 @@ export default {
     computed: {
         sortedArray() {
             if (this.sortFilter == null) {
-                console.log(this.albums);
                 return this.albums;
             }
             else if (this.sortFilter == "asc") {
