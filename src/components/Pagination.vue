@@ -14,11 +14,12 @@
 export default {
     name: 'Pagination',
     props: {
-        albumsQty: Number
+        albumsQty: Number,
+        page: String
     },
     data() {
         return {
-            page: 0,
+            // page: 0,
         }
     },
     methods: {

@@ -2,50 +2,11 @@
     <div>
         <br>
             <v-container>
-                <v-layout row>
-                    <v-text-field
-                        v-model="request"
-                        filled
-                        label="Enter Artist Name"
-                        @keyup.enter="page=0; submitSearch();"
-                    >
-                    </v-text-field>
-                    <v-btn
-                        color="deep-purple darken-3"
-                        outlined
-                        dark
-                        height="55"
-                        v-bind="attrs"
-                        v-on="on"
-                        @click="page=0; submitSearch();"
-                    >
-                        <v-icon>mdi-magnify</v-icon>
-                    </v-btn>
-                    <v-menu offset-y>
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-btn
-                                color="deep-purple darken-3"
-                                outlined
-                                dark
-                                height="55"
-                                v-bind="attrs"
-                                v-on="on"
-                            >
-                                <v-icon>mdi-filter</v-icon>
-                            </v-btn>
-                        </template>
-                        <v-list>
-                            <v-list-item
-                            v-for="(item, index) in items"
-                            :key="index"
-                            link
-                            @click="sortFilter = item.type"
-                            >
-                            <v-list-item-title>{{ item.title }}</v-list-item-title>
-                            </v-list-item>
-                        </v-list>
-                    </v-menu>
-                </v-layout>
+                <SearchBar
+                    @author="author = $event" 
+                    @filter="sortFilter = $event"
+                    @search="page=0; submitSearch();"
+                />
             </v-container>
 
             <v-container v-if="sortedArray.length === 0">
@@ -64,8 +25,10 @@
                         <Card :album="(album)"></Card>
                     </v-flex>
                     <v-flex xs12 class="text-center">
-                        <Pagination :albumsQty="albums.length" 
-                            @changePage="page = $event" 
+                        <Pagination 
+                            :albumsQty="albums.length" 
+                            :page="page"
+                            @changePage="page = $event"
                             @search="submitSearch()"
                         />
                     </v-flex>
@@ -76,6 +39,7 @@
 
 <script>
 import axios from 'axios'
+import SearchBar from "@/components/SearchBar";
 import Card from "@/components/Card";
 import Pagination from "@/components/Pagination";
 
@@ -83,33 +47,27 @@ export default {
     name: 'ApiSearch',
 
     components: {
+        SearchBar,
         Card,
         Pagination
     },
 
     data() {
         return {
-            attrs: null,
-            on: null,
             page: 0,
-            sortFilter: null,
-            request: '',
+            sortFilter: 'none',
+            author: '',
             entity: 'album',
-            albums: [],
-            items: [
-                { title: 'Predeterminado', type: null },
-                { title: 'Alfabéticamente ascendente  [A - Z]', type: 'asc' },
-                { title: 'Alfabéticamente descendente [Z - A]', type: 'desc' }
-            ],
+            albums: []
         }
     },
 
     computed: {
         sortedArray() {
-            if (this.sortFilter == null) {
+            if (this.sortFilter === 'none') {
                 return this.albums;
             }
-            else if (this.sortFilter == "asc") {
+            else if (this.sortFilter === "asc") {
                 return (JSON.parse(JSON.stringify(this.albums))).sort(this.compareAsc);
             }
             else {
@@ -134,15 +92,15 @@ export default {
             return 0;
         },
         async submitSearch() {
-            if (this.request === '') {
-                this.albums = []
+            if (this.author === '') {
+                this.albums = [];
                 return
             }
 
-            return axios.get(`https://itunes.apple.com/search?term=${this.request}&entity=${this.entity}&attribute=artistTerm&limit=20&offset=${this.page * 20}`)
+            return axios.get(`https://itunes.apple.com/search?term=${this.author}&entity=${this.entity}&attribute=artistTerm&limit=20&offset=${this.page * 20}`)
             .then((response) => {
                 this.albums=response.data.results;
-            })
+            });
         },
     }
 };
