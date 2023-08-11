@@ -106,11 +106,12 @@ export default {
 
             return axios
                 .get(
-                    `https://itunes.apple.com/search?term=${
-                        this.author
-                    }&entity=${
-                        this.entity
-                    }&attribute=artistTerm&limit=20&offset=${this.page * 20}`
+                    process.env.VUE_APP_API_URL +
+                        `search?term=${this.author}&entity=${
+                            this.entity
+                        }&attribute=artistTerm&limit=20&offset=${
+                            this.page * 20
+                        }`
                 )
                 .then((response) => {
                     this.albums = response.data.results;
