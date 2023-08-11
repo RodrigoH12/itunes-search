@@ -2,32 +2,35 @@
     <v-layout row>
         <v-text-field
             v-model="request"
-            filled
+            class="custom-input mr-4"
+            color="deep-purple darken-3"
             label="Enter Artist Name"
             @keyup.enter="search()"
         >
         </v-text-field>
         <v-btn
+            class="text-none mr-4"
             color="deep-purple darken-3"
             outlined
-            dark
-            height="55"
+            height="48"
             v-bind="attrs"
             v-on="on"
             @click="search()"
         >
+            <div class="mx-1">Search</div>
             <v-icon>mdi-magnify</v-icon>
         </v-btn>
         <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
+                    class="text-none"
                     color="deep-purple darken-3"
                     outlined
-                    dark
-                    height="55"
+                    height="48"
                     v-bind="attrs"
                     v-on="on"
                 >
+                    <div class="mx-1">Filters</div>
                     <v-icon>mdi-filter</v-icon>
                 </v-btn>
             </template>
@@ -58,9 +61,9 @@ export default {
             sortFilter: 'none',
             request: '',
             items: [
-                { title: 'Predeterminado', type: 'none' },
-                { title: 'Alfabéticamente ascendente  [A - Z]', type: 'asc' },
-                { title: 'Alfabéticamente descendente [Z - A]', type: 'desc' }
+                { title: 'Default', type: 'none' },
+                { title: 'Ascending order  [A - Z]', type: 'asc' },
+                { title: 'Descending order [Z - A]', type: 'desc' }
             ]
         };
     },
