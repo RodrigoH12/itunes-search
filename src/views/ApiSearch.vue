@@ -11,7 +11,11 @@
             />
         </v-container>
 
-        <v-container v-if="sortedArray.length === 0">
+        <v-container v-if="showErrorComponent === true">
+            <v-alert type="error"> An error ocurred! </v-alert>
+        </v-container>
+
+        <v-container v-else-if="sortedArray.length === 0">
             <v-row class="text-center">
                 <v-col class="mb-4">
                     <p class="subheading font-weight-regular">
@@ -67,6 +71,7 @@ export default {
             sortFilter: 'none',
             author: '',
             entity: 'album',
+            showErrorComponent: false,
             albums: []
         };
     },
@@ -114,7 +119,12 @@ export default {
                         }`
                 )
                 .then((response) => {
+                    this.showErrorComponent = false;
                     this.albums = response.data.results;
+                })
+                .catch((error) => {
+                    this.showErrorComponent = true;
+                    console.error('An error occurred:', error);
                 });
         }
     }
