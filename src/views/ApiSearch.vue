@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <br />
+    <v-container class="main-container">
         <v-container>
             <SearchBar
                 @author="author = $event"
@@ -22,7 +21,7 @@
             </v-row>
         </v-container>
 
-        <v-container v-else class="my-5" grid-list-lg>
+        <v-container v-else grid-list-lg>
             <v-layout row wrap>
                 <v-flex
                     xs12
@@ -44,7 +43,7 @@
                 </v-flex>
             </v-layout>
         </v-container>
-    </div>
+    </v-container>
 </template>
 
 <script>
@@ -120,3 +119,9 @@ export default {
     }
 };
 </script>
+
+<style>
+.main-container {
+    padding: 24px;
+}
+</style>
