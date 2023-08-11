@@ -7,7 +7,7 @@
             label="Enter Artist Name"
             @keyup.enter="search()"
         />
-        <v-container>
+        <div>
             <v-btn
                 class="text-none mr-4"
                 color="deep-purple darken-3"
@@ -48,7 +48,7 @@
                     </v-list-item>
                 </v-list>
             </v-menu>
-        </v-container>
+        </div>
     </v-layout>
 </template>
 
