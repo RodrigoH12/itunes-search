@@ -27,26 +27,22 @@ export default {
     name: 'Pagination',
     props: {
         albumsQty: Number,
-        page: String
-    },
-    data() {
-        return {
-            // page: 0,
-        };
+        page: Number
     },
     methods: {
         changePage(direction) {
+            let newPage = this.page;
             switch (direction) {
                 case 'left':
-                    this.page--;
+                    newPage--;
                     break;
                 case 'right':
-                    this.page++;
+                    newPage++;
                     break;
                 default:
                     break;
             }
-            this.$emit('changePage', this.page);
+            this.$emit('changePage', newPage);
             this.$emit('search');
         }
     }
