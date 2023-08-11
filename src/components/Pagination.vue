@@ -2,6 +2,7 @@
     <div>
         <v-btn
             :disabled="page <= 0"
+            color="deep-purple darken-3"
             fab
             outlined
             small
@@ -9,9 +10,10 @@
         >
             <v-icon>mdi-arrow-left-bold</v-icon>
         </v-btn>
-        <span class="title mx-4">{{ page }}</span>
+        <span class="title mx-4 page-index">{{ page }}</span>
         <v-btn
             :disabled="albumsQty < 20"
+            color="deep-purple darken-3"
             fab
             outlined
             small
@@ -48,3 +50,9 @@ export default {
     }
 };
 </script>
+
+<style>
+.page-index {
+    color: #4527a0;
+}
+</style>
