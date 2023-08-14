@@ -1,22 +1,51 @@
-import { assert, expect } from 'chai'
-import { shallowMount } from '@vue/test-utils'
-import ApiSearch from '@/views/ApiSearch.vue'
+import { assert, expect } from 'chai';
+import { mount, createLocalVue } from '@vue/test-utils';
+import vuetify from 'vuetify';
+import ApiSearch from '@/views/ApiSearch.vue';
 
 describe('ApiSearch.vue', () => {
+    let wrapper;
+    const localVue = createLocalVue();
+    localVue.use(vuetify);
 
-  let wrapper;
+    beforeEach(() => {
+        wrapper = mount(ApiSearch, {
+            localVue,
+            stubs: {
+                'v-text-field': true,
+                'v-icon': true
+            }
+        });
+    });
 
-  beforeEach(() => {
-    wrapper = shallowMount(ApiSearch);
-  });
+    it('ApiSearch view renders correctly', () => {
+        expect(wrapper.exists()).to.be.true;
+    });
 
-  it("The quantity of albums shown is equals to 20", async () => {
-    let expectedlength = 20;
-    wrapper.vm.$data.request = "U2"
-    await wrapper.vm.submitSearch();
-    let currentAlbums = wrapper.vm.$data.albums;
+    it('Typing "Luis Miguel" in searchBar component returns 20 results', async () => {
+        const author = 'Luis Miguel';
+        const expectedlength = 20;
 
-    assert.exists(currentAlbums);
-    expect(currentAlbums.length).to.be.equal(expectedlength);
-  });
-})
+        const searchBar = wrapper.findComponent({ name: 'SearchBar' });
+        searchBar.setData({ request: author });
+        await searchBar.find('.search-button').trigger('click');
+
+        await wrapper.vm.$nextTick();
+
+        await wrapper.vm.submitSearch();
+        const currentAlbums = wrapper.vm.$data.albums;
+
+        expect(currentAlbums.length).to.be.equal(expectedlength);
+    });
+
+    it('Searching author "Taylor" returns 18 results', async () => {
+        const expectedlength = 18;
+
+        wrapper.vm.$data.author = 'Taylor';
+        await wrapper.vm.submitSearch();
+        const currentAlbums = wrapper.vm.$data.albums;
+
+        assert.exists(currentAlbums);
+        expect(currentAlbums.length).to.be.equal(expectedlength);
+    });
+});
