@@ -9,7 +9,7 @@
         />
         <div>
             <v-btn
-                class="text-none mr-4"
+                class="search-button text-none mr-4"
                 color="deep-purple darken-3"
                 outlined
                 height="48"
@@ -23,7 +23,7 @@
             <v-menu offset-y>
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                        class="text-none"
+                        class="filter-button text-none"
                         color="deep-purple darken-3"
                         outlined
                         height="48"
