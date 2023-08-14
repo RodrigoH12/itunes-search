@@ -1,30 +1,26 @@
 <template>
-    <div class="text-left mx-auto custom-card">
+    <v-card class="mx-auto itunes-card" width="300" margin="50">
         <v-img
+            class="artwork"
             v-if="album.artworkUrl100 != null"
-            contain
-            height="300"
-            width="300"
             :src="resizeImg(album)"
         ></v-img>
         <v-img
+            class="artwork"
             v-else
-            contain
-            height="300"
-            width="300"
             src="https://upload.wikimedia.org/wikipedia/commons/d/df/ITunes_logo.svg"
         ></v-img>
-        <v-flex class="text-xs-left" xs12>
-            <div class="subheading font-weight-medium"><b> Album: </b></div>
-            <div class="grey--text albumData">{{ album.collectionName }}</div>
-            <div class="subheading"><b> Artist: </b></div>
-            <div class="grey--text albumData">{{ album.artistName }}</div>
-            <div class="subheading"><b> Price: </b></div>
-            <div class="grey--text albumData">
+
+        <div class="itunes-card-content">
+            <div class="album-label" :data-hover="album.collectionName">
+                {{ album.collectionName }}
+            </div>
+            <div class="artist-label">{{ album.artistName }}</div>
+            <div class="price-label">
                 {{ album.collectionPrice }} {{ album.Price }} $
             </div>
-        </v-flex>
-    </div>
+        </div>
+    </v-card>
 </template>
 
 <script>
@@ -40,13 +36,58 @@ export default {
 </script>
 
 <style>
-.custom-card {
-    max-height: 470px;
-    max-width: 300px;
+.itunes-card {
+    box-shadow: none !important;
 }
-.albumData {
+.itunes-card-content {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.artwork {
+    background-size: contain;
+    height: 278px;
+    border-radius: 16px !important;
+}
+.album-label {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: large;
+    color: #2d2b2b;
+    font-weight: bold;
+    cursor: default;
+}
+.album-label:before {
+    content: attr(data-hover);
+    font-size: 12px;
+    visibility: hidden;
+    opacity: 0;
+    max-width: 300px;
+    background-color: rgb(15, 15, 15);
+    color: #fff;
+    text-align: center;
+    padding: 4px;
+    transition: opacity 1s ease-in-out;
+    position: absolute;
+    z-index: 1;
+    top: 84%;
+    white-space: initial;
+}
+.album-label:hover:before {
+    opacity: 1;
+    visibility: visible;
+}
+.artist-label {
+    color: gray;
+    font-size: medium;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.price-label {
+    color: gray;
+    font-size: medium;
 }
 </style>

@@ -2,6 +2,7 @@
     <div>
         <v-btn
             :disabled="page <= 0"
+            color="deep-purple darken-3"
             fab
             outlined
             small
@@ -9,9 +10,10 @@
         >
             <v-icon>mdi-arrow-left-bold</v-icon>
         </v-btn>
-        <span class="title mx-4">{{ page }}</span>
+        <span class="title mx-4 page-index">{{ page }}</span>
         <v-btn
             :disabled="albumsQty < 20"
+            color="deep-purple darken-3"
             fab
             outlined
             small
@@ -27,28 +29,30 @@ export default {
     name: 'Pagination',
     props: {
         albumsQty: Number,
-        page: String
-    },
-    data() {
-        return {
-            // page: 0,
-        };
+        page: Number
     },
     methods: {
         changePage(direction) {
+            let newPage = this.page;
             switch (direction) {
                 case 'left':
-                    this.page--;
+                    newPage--;
                     break;
                 case 'right':
-                    this.page++;
+                    newPage++;
                     break;
                 default:
                     break;
             }
-            this.$emit('changePage', this.page);
+            this.$emit('changePage', newPage);
             this.$emit('search');
         }
     }
 };
 </script>
+
+<style>
+.page-index {
+    color: #4527a0;
+}
+</style>
