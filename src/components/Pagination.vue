@@ -1,6 +1,7 @@
 <template>
     <div>
         <v-btn
+            class="left-arrow"
             :disabled="page <= 0"
             color="deep-purple darken-3"
             fab
@@ -12,6 +13,7 @@
         </v-btn>
         <span class="title mx-4 page-index">{{ page }}</span>
         <v-btn
+            class="right-arrow"
             :disabled="albumsQty < 20"
             color="deep-purple darken-3"
             fab
